@@ -1,4 +1,4 @@
-# jenkins-backup
+# Jenkins Backup
 Script that can run in Jenkins to backup Jenkins.  Say what?
 
 This script will create tar.gz backup of JENKINS_HOME into the current job workspace with folder provided as the first parameter/argument.  The default value of this parameter is "jenkins".  This Script will also automatically upload to s3 if aws cli is available.
