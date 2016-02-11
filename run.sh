@@ -31,4 +31,4 @@ tar --exclude-from "$workfolder/backup_exclusions" -czf "$workfolder/$backup_des
 
 command -v aws >/dev/null 2>&1 || { echo >&2 "AWS CLI is required but it's not installed.  Aborting s3 upload."; exit 0; }
 
-aws s3 cp "$workfolder/$backup_dest/$backup_filename" "$backup_dest/"
+aws s3 cp "$workfolder/$backup_dest/$backup_filename" "s3://$backup_dest/"
