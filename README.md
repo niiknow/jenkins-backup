@@ -1,9 +1,9 @@
 # Jenkins Backup
 Script that can run in Jenkins to backup Jenkins.  Say what?
 
-This script will create tar.gz backup of JENKINS_HOME into the current job workspace with folder provided as the first parameter/argument.  The default value of this parameter is "jenkins".  This Script will also automatically upload to s3 if aws cli is available.
+This script will create tar.gz backup of JENKINS_HOME into the current job $WORKSPACE/foldername where foldername is provided as parameter/argument 1.  The default value of this parameter is "jenkins".  This Script will also automatically upload to s3 if AWS CLI is available.
 
-* Create Jenkins job to this git repository.
+* Create Jenkins job with git repository.
 * Create build task to execute shell with:
 ```
 ./run.sh "bucket-name/folder"
@@ -17,8 +17,7 @@ cp folder/*.tar.gz /mnt/backup/jenkins
 ```
 
 ## Note
-* Auto upload to s3 if aws cli exists (must set environment variable in Manage Jenkins->Configure System->Environment variables->	List of key-value pairs for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY)
-* Invalid bucket name or folder will result in error:  A client error (NoSuchBucket) occurred when calling the CreateMultipartUpload operation: The specified bucket does not exist
+* Auto upload to s3 if aws cli exists (must set environment variable in Manage Jenkins->Configure System->Environment variables->List of key-value pairs for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY)
 
 Example of a user in AWS with minimal IAM permission for s3: 
 ```
@@ -41,7 +40,7 @@ Example of a user in AWS with minimal IAM permission for s3:
 ```
 
 ## Reference
-* https://wiki.jenkins-ci.org/display/JENKINS/S3+Plugin - seem to be broken for me in the latest Jenkins so we fallback to aws cli
+* https://wiki.jenkins-ci.org/display/JENKINS/S3+Plugin - seem to be broken for me in the latest Jenkins so we fallback to AWS CLI
 
 ## License
 The MIT License (MIT)
