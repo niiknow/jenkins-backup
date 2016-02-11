@@ -22,10 +22,9 @@ workfolder=`pwd`
 backup_filename="$stamp-$backup_name.tar.gz"
 
 # change to backup dir - creating archives with absolute paths can be dangerous
+mkdir -p "$backup_dest"
 cd "$backup_dest"
 rm -f *.tar.gz
-cd "$workfolder"
-mkdir -p "$backup_dest"
 cd "$backup_target"
 tar --exclude-from "$workfolder/backup_exclusions" -czf "$workfolder/$backup_dest/$backup_filename" .
 
