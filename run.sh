@@ -10,9 +10,11 @@ echo -e " "
 
 # Basic variables, use environment variable
 backup_dest=$(sed 's/\/*$//' <<< "$1")
+backup_dest=$(sed 's/^\/*//' <<< "$backup_dest")
 JEKINS_HOME_DEFAULT="/var/jenkins_home"
 backup_target=${JENKINS_HOME:-$JEKINS_HOME_DEFAULT}
 backup_name="jenkins-$BUILD_NUMBER"
+backup_dest=${backup_dest:-jenkins}
 
 # Timestamp (sortable AND readable)
 stamp=`date +"%Y%m%dT%H%M%S"`
@@ -21,4 +23,4 @@ backup_filename="$stamp-$backup_name.tar.gz"
 
 # change to backup dir - creating archives with absolute paths can be dangerous
 cd "$backup_target"
-tar --exclude-from "$workfolder/backup_exclusions" -czf "$workfolder/$backup_filename" .
+tar --exclude-from "$workfolder/backup_exclusions" -czf "$workfolder/$backup_dest/$backup_filename" .
