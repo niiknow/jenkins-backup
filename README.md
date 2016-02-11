@@ -10,8 +10,31 @@ This script will create tar.gz backup of JENKINS_HOME into the current job works
 ```
 
 ## Note
-* Auto upload to s3 if aws cli exists (must set environment variable in manage jenkins for acccess id and key)
+* Auto upload to s3 if aws cli exists (must set environment variable in Manage Jenkins->Configure System->Environment variables->	List of key-value pairs for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY)
 * Invalid bucket name or folder will result in error:  A client error (NoSuchBucket) occurred when calling the CreateMultipartUpload operation: The specified bucket does not exist
+
+Example of a user in AWS with minimal IAM permission for s3: 
+```
+{
+  "Statement": [
+    {
+      "Action": [
+        "s3:ListAllMyBuckets"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Action": "s3:*",
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::my-backup-bucket, "arn:aws:s3:::my-backup-bucket/*"]
+    }
+  ]
+}
+```
+
+## Reference
+* https://wiki.jenkins-ci.org/display/JENKINS/S3+Plugin - seem to be broken for me in the latest jenkins so we fallback to aws cli
 
 ## License
 The MIT License (MIT)
