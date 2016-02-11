@@ -1,7 +1,7 @@
 # jenkins-backup
 Script that can run in Jenkins to backup Jenkins.  Say what?
 
-This script will create tar.gz backup of Jenkins into the current job workspace with folder provided by the first parameter/argument.  The default value of this parameter is "jenkins".  ThissScript will also automatically upload to s3 if aws cli is available.
+This script will create tar.gz backup of JENKINS_HOME into the current job workspace with folder provided by the first parameter/argument.  The default value of this parameter is "jenkins".  This Script will also automatically upload to s3 if aws cli is available.
 
 * Create Jenkins job to this git repository.
 * Create build task to execute shell with:
