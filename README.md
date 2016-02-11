@@ -34,7 +34,7 @@ Example of a user in AWS with minimal IAM permission for s3:
 ```
 
 ## Reference
-* https://wiki.jenkins-ci.org/display/JENKINS/S3+Plugin - seem to be broken for me in the latest jenkins so we fallback to aws cli
+* https://wiki.jenkins-ci.org/display/JENKINS/S3+Plugin - seem to be broken for me in the latest Jenkins so we fallback to aws cli
 
 ## License
 The MIT License (MIT)
