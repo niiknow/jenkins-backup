@@ -9,6 +9,13 @@ This script will create tar.gz backup of JENKINS_HOME into the current job works
 ./run.sh "bucket-name/folder"
 ```
 
+* If you don't use s3, you can add additional script to move the file to your backup/nfs location, example:
+```
+./run.sh "folder"
+cd "$WORKSPACE"
+cp folder/*.tar.gz /mnt/backup/jenkins
+```
+
 ## Note
 * Auto upload to s3 if aws cli exists (must set environment variable in Manage Jenkins->Configure System->Environment variables->	List of key-value pairs for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY)
 * Invalid bucket name or folder will result in error:  A client error (NoSuchBucket) occurred when calling the CreateMultipartUpload operation: The specified bucket does not exist
