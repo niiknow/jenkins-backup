@@ -26,8 +26,10 @@ mkdir -p "$backup_dest"
 cd "$backup_dest"
 rm -f *.tar.gz
 cd "$backup_target"
+echo "begin folder archive..."
 tar --exclude-from "$workfolder/backup_exclusions" -czf "$workfolder/$backup_dest/$backup_filename" .
 
+echo "begin s3 upload..."
 command -v aws >/dev/null 2>&1 || { echo >&2 "AWS CLI is required but it's not installed.  Aborting s3 upload."; exit 0; }
 
 aws s3 cp "$workfolder/$backup_dest/$backup_filename" "s3://$backup_dest/"
